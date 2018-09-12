@@ -3,13 +3,13 @@ An experimental education game engine build from scratch. Using C++ programming 
 
 
 ## Built With
-*cmake 3.5.1
-*gcc 5.4.0
+* cmake 3.5.1
+* gcc 5.4.0
 
 ## Used source code
 * [plog](https://github.com/SergiusTheBest/plog) - logging library
-* OpenGL library
-* GLFW library
+* [OpenGL](https://www.opengl.org/) library
+* [GLFW](http://www.glfw.org/) library
 
 ## Used tutorial
 Sparky Engine from TheChernoProject.
