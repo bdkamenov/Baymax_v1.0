@@ -7,9 +7,9 @@ An experimental education game engine build from scratch. Using C++ programming 
 *gcc 5.4.0
 
 ## Used source code
-*plog - logging library for more info https://github.com/SergiusTheBest/plog
-*OpenGL library
-*GLFW library
+* [plog](https://github.com/SergiusTheBest/plog) - logging library
+* OpenGL library
+* GLFW library
 
 ## Used tutorial
 Sparky Engine from TheChernoProject.
