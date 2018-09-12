@@ -1,5 +1,16 @@
 # Baymax_v1.0
-An experimental game engine build from scratch. 
+An experimental education game engine build from scratch. Using C++ programming language.
 
-Using tutorial Sparky Engine from TheChernoProject.
-For more of it check https://www.youtube.com/TheChernoProject.
+
+## Built With
+*cmake 3.5.1
+*gcc 5.4.0
+
+## Used source code
+*plog - logging library for more info https://github.com/SergiusTheBest/plog
+*OpenGL library
+*GLFW library
+
+## Used tutorial
+Sparky Engine from TheChernoProject.
+For more of it check [Sparky Engine](https://www.youtube.com/watch?v=vWU8EltWTfM&list=PLlrATfBNZ98fqE45g3jZA_hLGUrD4bo6_).

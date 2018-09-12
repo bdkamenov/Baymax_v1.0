@@ -1,6 +1,63 @@
-cmake_minimum_required(VERSION 3.12)
-project(Baymax_v1_0)
+cmake_minimum_required(VERSION 2.8)
+project(Baymax)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Baymax_v1_0 main.cpp baymax_core/    src/window.cpp baymax_core/include/window.h)
+# used to set the build type to be a release/debug build
+set(CMAKE_BUILD_TYPE Debug)
+
+# used to bring the header files into the build environment
+include_directories(/usr/include/ baymax_core/graphics/)
+
+# | Can manually add the sources using the set command as follows:
+# | set(SOURCES engine_core/main.cpp)
+
+# However, the file(GLOB...) allows for wildcard additions:
+file(GLOB SOURCES  baymax_core/baymax.cpp "baymax_core/graphics/*.cpp")
+
+
+set(GLEW_STATIC_LIB libGLEW.a)
+set (GLFW_STATIC_LIB libglfw3.a)
+set(GL_LIBRARY glfw3 GL X11 Xi Xrandr Xxf86vm Xinerama Xcursor rt m pthread)
+
+link_directories(~/Programming/libs//glew-2.1.0/lib)
+link_directories(~/Programming/libs/glfw-3.2.1/build/src)
+
+#---------- Adding an executable ----------#
+# | The first argument to the add_executable() function
+# | is the name of the executable to be built,
+# | and the second argument is the source file
+# | from which to build the executable.
+add_executable(Baymax.exe ${SOURCES} baymax_core/maths/vec2.cpp baymax_core/maths/vec2.h baymax_core/maths/vec3.cpp baymax_core/maths/vec3.h baymax_core/maths/vec4.cpp baymax_core/maths/vec4.h baymax_core/maths/maths.h)
+#------------------------------------------#
+
+target_link_libraries(Baymax.exe ${GLEW_STATIC_LIB} ${GLFW_STATIC_LIB} ${CMAKE_DL_LIBS} ${GL_LIBRARY} )
+
+#---------- Generating a shared or static library example ----------#
+# | Generate the shared library from the sources.
+# | built as a shared library using the SHARED flag
+# | (other options are: STATIC or MODULE),
+# | and the <name> name is used as the name of the shared library.
+# | add_library(<name> SHARED ${SOURCES})
+# |
+# | Set the location for library installation -- i.e., /usr/lib in this case
+# | not really necessary in this example. Use "sudo make install" to apply.
+# | Deployment is invoked using a call to sudo make install in this case.
+# | install(TARGETS <name> DESTINATION /usr/lib)
+#-------------------------------------------------------------------#
+
+
+#---------- Using a shared or static library example ----------#
+# | For the shared library:
+# | set ( PROJECT_LINK_LIBS libtestStudent.so )
+# | link_directories( ~/exploringBB/extras/cmake/studentlib_shared/build )
+
+# | For the static library:
+# | set ( PROJECT_LINK_LIBS libtestStudent.a )
+# | link_directories( ~/exploringBB/extras/cmake/studentlib_static/build )
+
+# include_directories(~/exploringBB/extras/cmake/studentlib_shared/include)
+
+# add_executable(libtest libtest.cpp)
+# target_link_libraries(libtest ${PROJECT_LINK_LIBS} )
+#--------------------------------------------------------------#
