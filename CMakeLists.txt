@@ -7,14 +7,19 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_BUILD_TYPE Debug)
 
 # used to bring the header files into the build environment
-include_directories(/usr/include/ baymax_core/graphics/)
+include_directories(/usr/include/ baymax_core/graphics/ baymax_core/maths/)
 
 # | Can manually add the sources using the set command as follows:
 # | set(SOURCES engine_core/main.cpp)
 
 # However, the file(GLOB...) allows for wildcard additions:
-file(GLOB SOURCES  baymax_core/baymax.cpp "baymax_core/graphics/*.cpp")
+file(
+GLOB MATH_SOURCES
+"baymax_core/maths/*.cpp")
 
+file(
+GLOB GRAPHICS_SOURCES
+"baymax_core/graphics/*.cpp")
 
 set(GLEW_STATIC_LIB libGLEW.a)
 set (GLFW_STATIC_LIB libglfw3.a)
@@ -28,7 +33,7 @@ link_directories(~/Programming/libs/glfw-3.2.1/build/src)
 # | is the name of the executable to be built,
 # | and the second argument is the source file
 # | from which to build the executable.
-add_executable(Baymax.exe ${SOURCES} baymax_core/maths/vec2.cpp baymax_core/maths/vec2.h baymax_core/maths/vec3.cpp baymax_core/maths/vec3.h baymax_core/maths/vec4.cpp baymax_core/maths/vec4.h baymax_core/maths/maths.h)
+add_executable(Baymax.exe baymax_core/baymax.cpp ${MATH_SOURCES} ${GRAPHICS_SOURCES})
 #------------------------------------------#
 
 target_link_libraries(Baymax.exe ${GLEW_STATIC_LIB} ${GLFW_STATIC_LIB} ${CMAKE_DL_LIBS} ${GL_LIBRARY} )
@@ -61,3 +66,8 @@ target_link_libraries(Baymax.exe ${GLEW_STATIC_LIB} ${GLFW_STATIC_LIB} ${CMAKE_D
 # add_executable(libtest libtest.cpp)
 # target_link_libraries(libtest ${PROJECT_LINK_LIBS} )
 #--------------------------------------------------------------#
+
+include_directories(tests)
+ENABLE_TESTING()
+ADD_EXECUTABLE(Math_Tests tests/math_test.cpp ${MATH_SOURCES})
+ADD_TEST(Math_Tests Math_Tests)

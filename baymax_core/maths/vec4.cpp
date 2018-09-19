@@ -1,5 +1,6 @@
 #include "vec4.h"
 
+#include "mathUtils.h"
 
 namespace baymax {
 namespace maths
@@ -57,12 +58,12 @@ vec4& vec4::operator/=(const baymax::maths::vec4& other)
     return *this;
 }
 
-bool vec4::operator==(const vec4& rhs)
+bool vec4::operator==(const vec4& rhs) const
 {
-    return _x == rhs._x && _y == rhs._y && _z == rhs._z && _w == rhs._w;
+    return areEqual<float>(_x, rhs._x) && areEqual<float>(_y, rhs._y) && areEqual<float>(_z, rhs._z) && areEqual<float>(_w, rhs._w);
 }
 
-bool vec4::operator!=(const vec4& rhs)
+bool vec4::operator!=(const vec4& rhs) const
 {
     return !(*this == rhs);
 }

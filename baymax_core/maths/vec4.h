@@ -21,8 +21,8 @@ struct vec4
     vec4& operator-=(const vec4& rhs);
     vec4& operator*=(const vec4& rhs);
     vec4& operator/=(const vec4& rhs);
-    bool operator==(const vec4& rhs);
-    bool operator!=(const vec4& rhs);
+    bool operator==(const vec4& rhs) const;
+    bool operator!=(const vec4& rhs) const;
 
     float _x, _y, _z, _w;
 };

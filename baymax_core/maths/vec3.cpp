@@ -1,5 +1,6 @@
 #include "vec3.h"
 
+#include "mathUtils.h"
 
 namespace baymax {
 namespace maths
@@ -53,12 +54,12 @@ vec3& vec3::operator/=(const baymax::maths::vec3& other)
     return *this;
 }
 
-bool vec3::operator==(const vec3& rhs)
+bool vec3::operator==(const vec3& rhs) const
 {
-    return _x == rhs._x && _y == rhs._y && _z == rhs._z;
+    return areEqual<float>(_x, rhs._x) && areEqual<float>(_y, rhs._y) && areEqual<float>(_z, rhs._z);
 }
 
-bool vec3::operator!=(const vec3& rhs)
+bool vec3::operator!=(const vec3& rhs) const
 {
     return !(*this == rhs);
 }
