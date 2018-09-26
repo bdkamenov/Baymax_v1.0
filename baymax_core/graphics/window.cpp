@@ -8,6 +8,11 @@ namespace graphics {
 
 // callback friend functions
 
+void window_resize(GLFWwindow *window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}
+
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     Window* win = (Window*) glfwGetWindowUserPointer(window);
@@ -52,9 +57,12 @@ Window::~Window()
 
 void Window::update()
 {
+    GLenum error = glGetError();
+    if(error != GL_NO_ERROR)
+    {
+        LOG_ERROR << "OpenGL error: " << error;
+    }
     glfwPollEvents();
-    glfwGetFramebufferSize(_window, &_width, &_height);
-    glViewport(0, 0, _width, _height);
     glfwSwapBuffers(_window);
 }
 
@@ -81,8 +89,9 @@ bool Window::init()
         return false;
     }
 
-    glfwSetWindowUserPointer(_window, this);
     glfwMakeContextCurrent(_window);
+    glfwSetWindowUserPointer(_window, this);
+    glfwSetWindowSizeCallback(_window, window_resize);
     glfwSetKeyCallback(_window, key_callback);
     glfwSetMouseButtonCallback(_window, button_callback);
     glfwSetCursorPosCallback(_window, cursor_position_callback);

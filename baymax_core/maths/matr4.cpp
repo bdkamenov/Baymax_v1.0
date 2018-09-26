@@ -97,9 +97,9 @@ matr4 matr4::translate(const vec3& translation)
 {
     matr4 result(1.0f);
 
-    result.elements[3 + 0 * 4] = translation._x;
-    result.elements[3 + 1 * 4] = translation._y;
-    result.elements[3 + 2 * 4] = translation._z;
+    result.elements[0 + 3 * 4] = translation._x;
+    result.elements[1 + 3 * 4] = translation._y;
+    result.elements[2 + 3 * 4] = translation._z;
 
     return result;}
 

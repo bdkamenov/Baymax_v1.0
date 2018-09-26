@@ -1,4 +1,4 @@
-#include "indexBuffer.h"
+#include "indexbuffer.h"
 
 namespace baymax {
 namespace graphics {
